@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ded811ba5aa44b2a3d481075ad40eeb" Name="Diagram1">
+        <EntityTypeShape EntityType="SqlProjectModel.Branch" Width="1.5" PointX="0.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Cours" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Department" Width="1.5" PointX="1.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.ExamAllowOption" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Exam" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Instructor_Exam_Degree" Width="1.5" PointX="12.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Instructor" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Intake" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Login" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.MCQ_Multi_Ans" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.MCQuestion" Width="1.5" PointX="9.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.QuestionPool" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Student_Answer" Width="1.5" PointX="17.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Student_Question_Degree" Width="1.5" PointX="15" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Student_Result" Width="1.5" PointX="7.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Student" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.sysdiagram" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.TextQuestion" Width="1.5" PointX="9.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.Track" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.TrainingManager" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SqlProjectModel.TureFalseQuestion" Width="1.5" PointX="9.75" PointY="20.375" IsExpanded="true" />
+        <AssociationConnector Association="SqlProjectModel.FK_Branches_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_TrainingManager_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Courses_Instructors" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Courses_Tracks" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_QuestionPool_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Tracks_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_ExamAllowOptions_Exams" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Exams_Instructors" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Question_Pool_Exam_Exams" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Student_Result_Exams" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Question_Pool_Exam_QuestionPool" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Student_Question_Degree_Instructor_Exam_Degree" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Instructors_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Students_Intake" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Students_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_TrainingManager_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_MCQ_Multi_Ans_MCQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_MCQuestion_QuestionPool" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_TextQuestion_QuestionPool" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_TureFalseQuestion_QuestionPool" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Student_Answer_Student_Question_Degree" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Student_Answer_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Student_Result_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="SqlProjectModel.FK_Students_Tracks" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

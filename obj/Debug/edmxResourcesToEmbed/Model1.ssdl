@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Branches">
+    <Key>
+      <PropertyRef Name="Branch_ID" />
+    </Key>
+    <Property Name="Branch_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Department_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Course_Desc" Type="nvarchar(max)" />
+    <Property Name="Course_Max_Degree" Type="int" />
+    <Property Name="Course_Min_Degree" Type="int" />
+    <Property Name="Instructor_ID" Type="int" />
+    <Property Name="Track_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Department_ID" />
+    </Key>
+    <Property Name="Department_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Department_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ExamAllowOptions">
+    <Key>
+      <PropertyRef Name="Exam_Option_ID" />
+    </Key>
+    <Property Name="Exam_Option_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Exam_Allows_Option" Type="nvarchar(max)" />
+    <Property Name="Exam_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Exams">
+    <Key>
+      <PropertyRef Name="Exam_ID" />
+    </Key>
+    <Property Name="Exam_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Exam_Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="Exam_Total_Degree" Type="int" />
+    <Property Name="Exam_Start_Time" Type="time" Precision="7" />
+    <Property Name="Exam_END_Time" Type="time" Precision="7" />
+    <Property Name="Exam_Total_Time" Type="float" />
+    <Property Name="Exam_Date" Type="time" Precision="7" />
+    <Property Name="Instructor_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Instructor_Exam_Degree">
+    <Key>
+      <PropertyRef Name="Question_Pool_Exam_ID" />
+    </Key>
+    <Property Name="Question_Pool_Exam_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Instructor_Degree" Type="int" />
+    <Property Name="Question_Pool_ID" Type="int" />
+    <Property Name="Exam_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Instructors">
+    <Key>
+      <PropertyRef Name="Instructor_ID" />
+    </Key>
+    <Property Name="Instructor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Instructor_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Manager_ID" Type="int" />
+    <Property Name="Login_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Intake">
+    <Key>
+      <PropertyRef Name="Intake_ID" />
+    </Key>
+    <Property Name="Intake_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Intake_No" Type="int" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Login_ID" />
+    </Key>
+    <Property Name="Login_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Acc_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="User_Password" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MCQ_Multi_Ans">
+    <Key>
+      <PropertyRef Name="MCQ_Multi_Ans_ID" />
+    </Key>
+    <Property Name="MCQ_Multi_Ans_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MCQ_Multi_Answar" Type="nvarchar(max)" />
+    <Property Name="MCQ_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="MCQuestion">
+    <Key>
+      <PropertyRef Name="MCQ_Q_ID" />
+    </Key>
+    <Property Name="MCQ_Q_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MCQ_Correct_Ans" Type="nvarchar(max)" />
+    <Property Name="Question_Poll_ID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSreplication_options">
+    <Key>
+      <PropertyRef Name="optname" />
+      <PropertyRef Name="value" />
+      <PropertyRef Name="major_version" />
+      <PropertyRef Name="minor_version" />
+      <PropertyRef Name="revision" />
+      <PropertyRef Name="install_failures" />
+    </Key>
+    <Property Name="optname" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="value" Type="bit" Nullable="false" />
+    <Property Name="major_version" Type="int" Nullable="false" />
+    <Property Name="minor_version" Type="int" Nullable="false" />
+    <Property Name="revision" Type="int" Nullable="false" />
+    <Property Name="install_failures" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question_Pool_Exam">
+    <Key>
+      <PropertyRef Name="Question_Pool_Exam_ID" />
+    </Key>
+    <Property Name="Question_Pool_Exam_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Exam_ID" Type="int" />
+    <Property Name="Question_Pool_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="QuestionPool">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Question_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar(max)" />
+    <Property Name="Course_ID" Type="int" />
+    <Property Name="Default_Degree" Type="int" />
+    <Property Name="Q_Type" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_fallback_db">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="version" />
+    </Key>
+    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+    <Property Name="xfallback_dbid" Type="smallint" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="dbid" Type="smallint" Nullable="false" />
+    <Property Name="status" Type="smallint" Nullable="false" />
+    <Property Name="version" Type="smallint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_fallback_dev">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="low" />
+      <PropertyRef Name="high" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="phyname" />
+    </Key>
+    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+    <Property Name="xfallback_low" Type="int" />
+    <Property Name="xfallback_drive" Type="char" MaxLength="2" />
+    <Property Name="low" Type="int" Nullable="false" />
+    <Property Name="high" Type="int" Nullable="false" />
+    <Property Name="status" Type="smallint" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="phyname" Type="varchar" MaxLength="127" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_fallback_usg">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="segmap" />
+      <PropertyRef Name="lstart" />
+      <PropertyRef Name="sizepg" />
+      <PropertyRef Name="vstart" />
+    </Key>
+    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+    <Property Name="xfallback_vstart" Type="int" />
+    <Property Name="dbid" Type="smallint" Nullable="false" />
+    <Property Name="segmap" Type="int" Nullable="false" />
+    <Property Name="lstart" Type="int" Nullable="false" />
+    <Property Name="sizepg" Type="int" Nullable="false" />
+    <Property Name="vstart" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_monitor">
+    <Key>
+      <PropertyRef Name="lastrun" />
+      <PropertyRef Name="cpu_busy" />
+      <PropertyRef Name="io_busy" />
+      <PropertyRef Name="idle" />
+      <PropertyRef Name="pack_received" />
+      <PropertyRef Name="pack_sent" />
+      <PropertyRef Name="connections" />
+      <PropertyRef Name="pack_errors" />
+      <PropertyRef Name="total_read" />
+      <PropertyRef Name="total_write" />
+      <PropertyRef Name="total_errors" />
+    </Key>
+    <Property Name="lastrun" Type="datetime" Nullable="false" />
+    <Property Name="cpu_busy" Type="int" Nullable="false" />
+    <Property Name="io_busy" Type="int" Nullable="false" />
+    <Property Name="idle" Type="int" Nullable="false" />
+    <Property Name="pack_received" Type="int" Nullable="false" />
+    <Property Name="pack_sent" Type="int" Nullable="false" />
+    <Property Name="connections" Type="int" Nullable="false" />
+    <Property Name="pack_errors" Type="int" Nullable="false" />
+    <Property Name="total_read" Type="int" Nullable="false" />
+    <Property Name="total_write" Type="int" Nullable="false" />
+    <Property Name="total_errors" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student_Answer">
+    <Key>
+      <PropertyRef Name="Student_Ans_ID" />
+    </Key>
+    <Property Name="Student_Ans_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Students_ID" Type="int" />
+    <Property Name="Student_Answer" Type="nvarchar(max)" />
+    <Property Name="Student_Question_Degree_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Student_Question_Degree">
+    <Key>
+      <PropertyRef Name="Student_Q_Degree_ID" />
+    </Key>
+    <Property Name="Student_Q_Degree_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Question_Degree" Type="int" />
+    <Property Name="Exam_ID" Type="int" />
+    <Property Name="Question_Pool_ID" Type="int" />
+    <Property Name="Student_Ans_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Student_Result">
+    <Key>
+      <PropertyRef Name="Student_Result_ID" />
+    </Key>
+    <Property Name="Student_Result_ID" Type="int" Nullable="false" />
+    <Property Name="Student_Result" Type="int" />
+    <Property Name="Student_ID" Type="int" />
+    <Property Name="Exam_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Track_ID" Type="int" />
+    <Property Name="Intake_ID" Type="int" />
+    <Property Name="Login_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TextQuestion">
+    <Key>
+      <PropertyRef Name="Text_Q_ID" />
+    </Key>
+    <Property Name="Text_Q_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text_Correct_Ans" Type="nvarchar" MaxLength="250" />
+    <Property Name="Question_Poll_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Tracks">
+    <Key>
+      <PropertyRef Name="Track_ID" />
+    </Key>
+    <Property Name="Track_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Track_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Department_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TrainingManager">
+    <Key>
+      <PropertyRef Name="Training_Mang_ID" />
+    </Key>
+    <Property Name="Training_Mang_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Training_Mang_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Login_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TureFalseQuestion">
+    <Key>
+      <PropertyRef Name="TF_Q_ID" />
+    </Key>
+    <Property Name="TF_Q_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TF_Correct_Ans" Type="nvarchar(max)" />
+    <Property Name="Question_Poll_ID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Branches_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+    <End Role="Branches" Type="Self.Branches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Department_ID" />
+      </Principal>
+      <Dependent Role="Branches">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Instructors">
+    <End Role="Instructors" Type="Self.Instructors" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructors">
+        <PropertyRef Name="Instructor_ID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Instructor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Tracks">
+    <End Role="Tracks" Type="Self.Tracks" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tracks">
+        <PropertyRef Name="Track_ID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Track_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExamAllowOptions_Exams">
+    <End Role="Exams" Type="Self.Exams" Multiplicity="0..1" />
+    <End Role="ExamAllowOptions" Type="Self.ExamAllowOptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="ExamAllowOptions">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructors_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Login_ID" />
+      </Principal>
+      <Dependent Role="Instructors">
+        <PropertyRef Name="Login_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructors_TrainingManager">
+    <End Role="TrainingManager" Type="Self.TrainingManager" Multiplicity="0..1" />
+    <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingManager">
+        <PropertyRef Name="Training_Mang_ID" />
+      </Principal>
+      <Dependent Role="Instructors">
+        <PropertyRef Name="Manager_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MCQ_Multi_Ans_MCQ_Multi_Ans">
+    <End Role="MCQ_Multi_Ans" Type="Self.MCQ_Multi_Ans" Multiplicity="1" />
+    <End Role="MCQ_Multi_Ans1" Type="Self.MCQ_Multi_Ans" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MCQ_Multi_Ans">
+        <PropertyRef Name="MCQ_Multi_Ans_ID" />
+      </Principal>
+      <Dependent Role="MCQ_Multi_Ans1">
+        <PropertyRef Name="MCQ_Multi_Ans_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MCQ_Multi_Ans_MCQuestion">
+    <End Role="MCQuestion" Type="Self.MCQuestion" Multiplicity="0..1" />
+    <End Role="MCQ_Multi_Ans" Type="Self.MCQ_Multi_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MCQuestion">
+        <PropertyRef Name="MCQ_Q_ID" />
+      </Principal>
+      <Dependent Role="MCQ_Multi_Ans">
+        <PropertyRef Name="MCQ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MCQuestion_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="MCQuestion" Type="Self.MCQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="MCQuestion">
+        <PropertyRef Name="Question_Poll_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Degree_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="Student_Question_Degree" Type="Self.Student_Question_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Student_Question_Degree">
+        <PropertyRef Name="Question_Pool_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_Exams">
+    <End Role="Exams" Type="Self.Exams" Multiplicity="0..1" />
+    <End Role="Instructor_Exam_Degree" Type="Self.Instructor_Exam_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Instructor_Exam_Degree">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_Exams1">
+    <End Role="Exams" Type="Self.Exams" Multiplicity="0..1" />
+    <End Role="Question_Pool_Exam" Type="Self.Question_Pool_Exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Question_Pool_Exam">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="Instructor_Exam_Degree" Type="Self.Instructor_Exam_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Instructor_Exam_Degree">
+        <PropertyRef Name="Question_Pool_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_QuestionPool1">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="Question_Pool_Exam" Type="Self.Question_Pool_Exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Question_Pool_Exam">
+        <PropertyRef Name="Question_Pool_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionPool_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="QuestionPool">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Answer_Student_Question_Degree">
+    <End Role="Student_Question_Degree" Type="Self.Student_Question_Degree" Multiplicity="0..1" />
+    <End Role="Student_Answer" Type="Self.Student_Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student_Question_Degree">
+        <PropertyRef Name="Student_Q_Degree_ID" />
+      </Principal>
+      <Dependent Role="Student_Answer">
+        <PropertyRef Name="Student_Question_Degree_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Answer_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+    <End Role="Student_Answer" Type="Self.Student_Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="Student_Answer">
+        <PropertyRef Name="Students_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Question_Degree_Exams">
+    <End Role="Exams" Type="Self.Exams" Multiplicity="0..1" />
+    <End Role="Student_Question_Degree" Type="Self.Student_Question_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Student_Question_Degree">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Result_Exams">
+    <End Role="Exams" Type="Self.Exams" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Result_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="Student_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Intake">
+    <End Role="Intake" Type="Self.Intake" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intake">
+        <PropertyRef Name="Intake_ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Intake_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Login_ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Login_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Tracks">
+    <End Role="Tracks" Type="Self.Tracks" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tracks">
+        <PropertyRef Name="Track_ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Track_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TextQuestion_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="TextQuestion" Type="Self.TextQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="TextQuestion">
+        <PropertyRef Name="Question_Poll_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tracks_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+    <End Role="Tracks" Type="Self.Tracks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Department_ID" />
+      </Principal>
+      <Dependent Role="Tracks">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingManager_Branches">
+    <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
+    <End Role="TrainingManager" Type="Self.TrainingManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="Branch_ID" />
+      </Principal>
+      <Dependent Role="TrainingManager">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingManager_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="TrainingManager" Type="Self.TrainingManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Login_ID" />
+      </Principal>
+      <Dependent Role="TrainingManager">
+        <PropertyRef Name="Login_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TureFalseQuestion_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="TureFalseQuestion" Type="Self.TureFalseQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="TureFalseQuestion">
+        <PropertyRef Name="Question_Poll_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterModelStoreContainer">
+    <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamAllowOptions" EntityType="Self.ExamAllowOptions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exams" EntityType="Self.Exams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instructor_Exam_Degree" EntityType="Self.Instructor_Exam_Degree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instructors" EntityType="Self.Instructors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Intake" EntityType="Self.Intake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MCQ_Multi_Ans" EntityType="Self.MCQ_Multi_Ans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MCQuestion" EntityType="Self.MCQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question_Pool_Exam" EntityType="Self.Question_Pool_Exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionPool" EntityType="Self.QuestionPool" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_Answer" EntityType="Self.Student_Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_Question_Degree" EntityType="Self.Student_Question_Degree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_Result" EntityType="Self.Student_Result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TextQuestion" EntityType="Self.TextQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tracks" EntityType="Self.Tracks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingManager" EntityType="Self.TrainingManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TureFalseQuestion" EntityType="Self.TureFalseQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSreplication_options].[optname] AS [optname], 
+    [MSreplication_options].[value] AS [value], 
+    [MSreplication_options].[major_version] AS [major_version], 
+    [MSreplication_options].[minor_version] AS [minor_version], 
+    [MSreplication_options].[revision] AS [revision], 
+    [MSreplication_options].[install_failures] AS [install_failures]
+    FROM [dbo].[MSreplication_options] AS [MSreplication_options]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [spt_fallback_db].[xserver_name] AS [xserver_name], 
+    [spt_fallback_db].[xdttm_ins] AS [xdttm_ins], 
+    [spt_fallback_db].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+    [spt_fallback_db].[xfallback_dbid] AS [xfallback_dbid], 
+    [spt_fallback_db].[name] AS [name], 
+    [spt_fallback_db].[dbid] AS [dbid], 
+    [spt_fallback_db].[status] AS [status], 
+    [spt_fallback_db].[version] AS [version]
+    FROM [dbo].[spt_fallback_db] AS [spt_fallback_db]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [spt_fallback_dev].[xserver_name] AS [xserver_name], 
+    [spt_fallback_dev].[xdttm_ins] AS [xdttm_ins], 
+    [spt_fallback_dev].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+    [spt_fallback_dev].[xfallback_low] AS [xfallback_low], 
+    [spt_fallback_dev].[xfallback_drive] AS [xfallback_drive], 
+    [spt_fallback_dev].[low] AS [low], 
+    [spt_fallback_dev].[high] AS [high], 
+    [spt_fallback_dev].[status] AS [status], 
+    [spt_fallback_dev].[name] AS [name], 
+    [spt_fallback_dev].[phyname] AS [phyname]
+    FROM [dbo].[spt_fallback_dev] AS [spt_fallback_dev]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [spt_fallback_usg].[xserver_name] AS [xserver_name], 
+    [spt_fallback_usg].[xdttm_ins] AS [xdttm_ins], 
+    [spt_fallback_usg].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+    [spt_fallback_usg].[xfallback_vstart] AS [xfallback_vstart], 
+    [spt_fallback_usg].[dbid] AS [dbid], 
+    [spt_fallback_usg].[segmap] AS [segmap], 
+    [spt_fallback_usg].[lstart] AS [lstart], 
+    [spt_fallback_usg].[sizepg] AS [sizepg], 
+    [spt_fallback_usg].[vstart] AS [vstart]
+    FROM [dbo].[spt_fallback_usg] AS [spt_fallback_usg]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [spt_monitor].[lastrun] AS [lastrun], 
+    [spt_monitor].[cpu_busy] AS [cpu_busy], 
+    [spt_monitor].[io_busy] AS [io_busy], 
+    [spt_monitor].[idle] AS [idle], 
+    [spt_monitor].[pack_received] AS [pack_received], 
+    [spt_monitor].[pack_sent] AS [pack_sent], 
+    [spt_monitor].[connections] AS [connections], 
+    [spt_monitor].[pack_errors] AS [pack_errors], 
+    [spt_monitor].[total_read] AS [total_read], 
+    [spt_monitor].[total_write] AS [total_write], 
+    [spt_monitor].[total_errors] AS [total_errors]
+    FROM [dbo].[spt_monitor] AS [spt_monitor]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Branches_Departments" Association="Self.FK_Branches_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Branches" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Instructors" Association="Self.FK_Courses_Instructors">
+      <End Role="Instructors" EntitySet="Instructors" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Tracks" Association="Self.FK_Courses_Tracks">
+      <End Role="Tracks" EntitySet="Tracks" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExamAllowOptions_Exams" Association="Self.FK_ExamAllowOptions_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="ExamAllowOptions" EntitySet="ExamAllowOptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructors_Login" Association="Self.FK_Instructors_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Instructors" EntitySet="Instructors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructors_TrainingManager" Association="Self.FK_Instructors_TrainingManager">
+      <End Role="TrainingManager" EntitySet="TrainingManager" />
+      <End Role="Instructors" EntitySet="Instructors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MCQ_Multi_Ans_MCQ_Multi_Ans" Association="Self.FK_MCQ_Multi_Ans_MCQ_Multi_Ans">
+      <End Role="MCQ_Multi_Ans" EntitySet="MCQ_Multi_Ans" />
+      <End Role="MCQ_Multi_Ans1" EntitySet="MCQ_Multi_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MCQ_Multi_Ans_MCQuestion" Association="Self.FK_MCQ_Multi_Ans_MCQuestion">
+      <End Role="MCQuestion" EntitySet="MCQuestion" />
+      <End Role="MCQ_Multi_Ans" EntitySet="MCQ_Multi_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MCQuestion_QuestionPool" Association="Self.FK_MCQuestion_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+      <End Role="MCQuestion" EntitySet="MCQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Degree_QuestionPool" Association="Self.FK_Question_Degree_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+      <End Role="Student_Question_Degree" EntitySet="Student_Question_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_Exams" Association="Self.FK_Question_Pool_Exam_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Instructor_Exam_Degree" EntitySet="Instructor_Exam_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_Exams1" Association="Self.FK_Question_Pool_Exam_Exams1">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Question_Pool_Exam" EntitySet="Question_Pool_Exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_QuestionPool" Association="Self.FK_Question_Pool_Exam_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+      <End Role="Instructor_Exam_Degree" EntitySet="Instructor_Exam_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_QuestionPool1" Association="Self.FK_Question_Pool_Exam_QuestionPool1">
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+      <End Role="Question_Pool_Exam" EntitySet="Question_Pool_Exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionPool_Courses" Association="Self.FK_QuestionPool_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Answer_Student_Question_Degree" Association="Self.FK_Student_Answer_Student_Question_Degree">
+      <End Role="Student_Question_Degree" EntitySet="Student_Question_Degree" />
+      <End Role="Student_Answer" EntitySet="Student_Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Answer_Students" Association="Self.FK_Student_Answer_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Student_Answer" EntitySet="Student_Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Question_Degree_Exams" Association="Self.FK_Student_Question_Degree_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Student_Question_Degree" EntitySet="Student_Question_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Result_Exams" Association="Self.FK_Student_Result_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Result_Students" Association="Self.FK_Student_Result_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Intake" Association="Self.FK_Students_Intake">
+      <End Role="Intake" EntitySet="Intake" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Login" Association="Self.FK_Students_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Tracks" Association="Self.FK_Students_Tracks">
+      <End Role="Tracks" EntitySet="Tracks" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TextQuestion_QuestionPool" Association="Self.FK_TextQuestion_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+      <End Role="TextQuestion" EntitySet="TextQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tracks_Departments" Association="Self.FK_Tracks_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Tracks" EntitySet="Tracks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingManager_Branches" Association="Self.FK_TrainingManager_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="TrainingManager" EntitySet="TrainingManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingManager_Login" Association="Self.FK_TrainingManager_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="TrainingManager" EntitySet="TrainingManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TureFalseQuestion_QuestionPool" Association="Self.FK_TureFalseQuestion_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPool" />
+      <End Role="TureFalseQuestion" EntitySet="TureFalseQuestion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

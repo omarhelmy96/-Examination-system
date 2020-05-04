@@ -1,0 +1,826 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="Branch_ID" />
+    </Key>
+    <Property Name="Branch_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Branch_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Department_ID" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Branches_Departments" FromRole="Branches" ToRole="Departments" />
+    <NavigationProperty Name="TrainingManagers" Relationship="Self.FK_TrainingManager_Branches" FromRole="Branches" ToRole="TrainingManager" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Course_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course_Max_Degree" Type="Int32" />
+    <Property Name="Course_Min_Degree" Type="Int32" />
+    <Property Name="Instructor_ID" Type="Int32" />
+    <Property Name="Track_ID" Type="Int32" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK_Courses_Instructors" FromRole="Courses" ToRole="Instructors" />
+    <NavigationProperty Name="Track" Relationship="Self.FK_Courses_Tracks" FromRole="Courses" ToRole="Tracks" />
+    <NavigationProperty Name="QuestionPools" Relationship="Self.FK_QuestionPool_Courses" FromRole="Courses" ToRole="QuestionPool" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Department_ID" />
+    </Key>
+    <Property Name="Department_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branches" Relationship="Self.FK_Branches_Departments" FromRole="Departments" ToRole="Branches" />
+    <NavigationProperty Name="Tracks" Relationship="Self.FK_Tracks_Departments" FromRole="Departments" ToRole="Tracks" />
+  </EntityType>
+  <EntityType Name="ExamAllowOption">
+    <Key>
+      <PropertyRef Name="Exam_Option_ID" />
+    </Key>
+    <Property Name="Exam_Option_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Exam_Allows_Option" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Exam_ID" Type="Int32" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_ExamAllowOptions_Exams" FromRole="ExamAllowOptions" ToRole="Exams" />
+  </EntityType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="Exam_ID" />
+    </Key>
+    <Property Name="Exam_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Exam_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Exam_Total_Degree" Type="Int32" />
+    <Property Name="Exam_Start_Time" Type="Time" Precision="7" />
+    <Property Name="Exam_END_Time" Type="Time" Precision="7" />
+    <Property Name="Exam_Total_Time" Type="Double" />
+    <Property Name="Exam_Date" Type="Time" Precision="7" />
+    <Property Name="Instructor_ID" Type="Int32" />
+    <NavigationProperty Name="ExamAllowOptions" Relationship="Self.FK_ExamAllowOptions_Exams" FromRole="Exams" ToRole="ExamAllowOptions" />
+    <NavigationProperty Name="Instructor_Exam_Degree" Relationship="Self.FK_Question_Pool_Exam_Exams" FromRole="Exams" ToRole="Instructor_Exam_Degree" />
+    <NavigationProperty Name="Question_Pool_Exam" Relationship="Self.FK_Question_Pool_Exam_Exams1" FromRole="Exams" ToRole="Question_Pool_Exam" />
+    <NavigationProperty Name="Student_Question_Degree" Relationship="Self.FK_Student_Question_Degree_Exams" FromRole="Exams" ToRole="Student_Question_Degree" />
+    <NavigationProperty Name="Student_Result" Relationship="Self.FK_Student_Result_Exams" FromRole="Exams" ToRole="Student_Result" />
+  </EntityType>
+  <EntityType Name="Instructor_Exam_Degree">
+    <Key>
+      <PropertyRef Name="Question_Pool_Exam_ID" />
+    </Key>
+    <Property Name="Question_Pool_Exam_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Instructor_Degree" Type="Int32" />
+    <Property Name="Question_Pool_ID" Type="Int32" />
+    <Property Name="Exam_ID" Type="Int32" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_Question_Pool_Exam_Exams" FromRole="Instructor_Exam_Degree" ToRole="Exams" />
+    <NavigationProperty Name="QuestionPool" Relationship="Self.FK_Question_Pool_Exam_QuestionPool" FromRole="Instructor_Exam_Degree" ToRole="QuestionPool" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="Instructor_ID" />
+    </Key>
+    <Property Name="Instructor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Instructor_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Manager_ID" Type="Int32" />
+    <Property Name="Login_ID" Type="Int32" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Instructors" FromRole="Instructors" ToRole="Courses" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_Instructors_Login" FromRole="Instructors" ToRole="Login" />
+    <NavigationProperty Name="TrainingManager" Relationship="Self.FK_Instructors_TrainingManager" FromRole="Instructors" ToRole="TrainingManager" />
+  </EntityType>
+  <EntityType Name="Intake">
+    <Key>
+      <PropertyRef Name="Intake_ID" />
+    </Key>
+    <Property Name="Intake_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Intake_No" Type="Int32" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Intake" FromRole="Intake" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Login_ID" />
+    </Key>
+    <Property Name="Login_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Instructors" Relationship="Self.FK_Instructors_Login" FromRole="Login" ToRole="Instructors" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Login" FromRole="Login" ToRole="Students" />
+    <NavigationProperty Name="TrainingManagers" Relationship="Self.FK_TrainingManager_Login" FromRole="Login" ToRole="TrainingManager" />
+  </EntityType>
+  <EntityType Name="MCQ_Multi_Ans">
+    <Key>
+      <PropertyRef Name="MCQ_Multi_Ans_ID" />
+    </Key>
+    <Property Name="MCQ_Multi_Ans_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MCQ_Multi_Answar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MCQ_ID" Type="Int32" />
+    <NavigationProperty Name="MCQ_Multi_Ans1" Relationship="Self.FK_MCQ_Multi_Ans_MCQ_Multi_Ans" FromRole="MCQ_Multi_Ans" ToRole="MCQ_Multi_Ans1" />
+    <NavigationProperty Name="MCQ_Multi_Ans2" Relationship="Self.FK_MCQ_Multi_Ans_MCQ_Multi_Ans" FromRole="MCQ_Multi_Ans1" ToRole="MCQ_Multi_Ans" />
+    <NavigationProperty Name="MCQuestion" Relationship="Self.FK_MCQ_Multi_Ans_MCQuestion" FromRole="MCQ_Multi_Ans" ToRole="MCQuestion" />
+  </EntityType>
+  <EntityType Name="MCQuestion">
+    <Key>
+      <PropertyRef Name="MCQ_Q_ID" />
+    </Key>
+    <Property Name="MCQ_Q_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MCQ_Correct_Ans" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Poll_ID" Type="Int32" />
+    <NavigationProperty Name="MCQ_Multi_Ans" Relationship="Self.FK_MCQ_Multi_Ans_MCQuestion" FromRole="MCQuestion" ToRole="MCQ_Multi_Ans" />
+    <NavigationProperty Name="QuestionPool" Relationship="Self.FK_MCQuestion_QuestionPool" FromRole="MCQuestion" ToRole="QuestionPool" />
+  </EntityType>
+  <EntityType Name="Question_Pool_Exam">
+    <Key>
+      <PropertyRef Name="Question_Pool_Exam_ID" />
+    </Key>
+    <Property Name="Question_Pool_Exam_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Exam_ID" Type="Int32" />
+    <Property Name="Question_Pool_ID" Type="Int32" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_Question_Pool_Exam_Exams1" FromRole="Question_Pool_Exam" ToRole="Exams" />
+    <NavigationProperty Name="QuestionPool" Relationship="Self.FK_Question_Pool_Exam_QuestionPool1" FromRole="Question_Pool_Exam" ToRole="QuestionPool" />
+  </EntityType>
+  <EntityType Name="QuestionPool">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Question_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="Default_Degree" Type="Int32" />
+    <Property Name="Q_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_QuestionPool_Courses" FromRole="QuestionPool" ToRole="Courses" />
+    <NavigationProperty Name="Instructor_Exam_Degree" Relationship="Self.FK_Question_Pool_Exam_QuestionPool" FromRole="QuestionPool" ToRole="Instructor_Exam_Degree" />
+    <NavigationProperty Name="MCQuestions" Relationship="Self.FK_MCQuestion_QuestionPool" FromRole="QuestionPool" ToRole="MCQuestion" />
+    <NavigationProperty Name="Question_Pool_Exam" Relationship="Self.FK_Question_Pool_Exam_QuestionPool1" FromRole="QuestionPool" ToRole="Question_Pool_Exam" />
+    <NavigationProperty Name="Student_Question_Degree" Relationship="Self.FK_Question_Degree_QuestionPool" FromRole="QuestionPool" ToRole="Student_Question_Degree" />
+    <NavigationProperty Name="TextQuestions" Relationship="Self.FK_TextQuestion_QuestionPool" FromRole="QuestionPool" ToRole="TextQuestion" />
+    <NavigationProperty Name="TureFalseQuestions" Relationship="Self.FK_TureFalseQuestion_QuestionPool" FromRole="QuestionPool" ToRole="TureFalseQuestion" />
+  </EntityType>
+  <EntityType Name="Student_Answer">
+    <Key>
+      <PropertyRef Name="Student_Ans_ID" />
+    </Key>
+    <Property Name="Student_Ans_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Students_ID" Type="Int32" />
+    <Property Name="Student_Answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Student_Question_Degree_ID" Type="Int32" />
+    <NavigationProperty Name="Student_Question_Degree" Relationship="Self.FK_Student_Answer_Student_Question_Degree" FromRole="Student_Answer" ToRole="Student_Question_Degree" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Answer_Students" FromRole="Student_Answer" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student_Question_Degree">
+    <Key>
+      <PropertyRef Name="Student_Q_Degree_ID" />
+    </Key>
+    <Property Name="Student_Q_Degree_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Student_Question_Degree1" Type="Int32" />
+    <Property Name="Exam_ID" Type="Int32" />
+    <Property Name="Question_Pool_ID" Type="Int32" />
+    <Property Name="Student_Ans_ID" Type="Int32" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_Student_Question_Degree_Exams" FromRole="Student_Question_Degree" ToRole="Exams" />
+    <NavigationProperty Name="QuestionPool" Relationship="Self.FK_Question_Degree_QuestionPool" FromRole="Student_Question_Degree" ToRole="QuestionPool" />
+    <NavigationProperty Name="Student_Answer" Relationship="Self.FK_Student_Answer_Student_Question_Degree" FromRole="Student_Question_Degree" ToRole="Student_Answer" />
+  </EntityType>
+  <EntityType Name="Student_Result">
+    <Key>
+      <PropertyRef Name="Student_Result_ID" />
+    </Key>
+    <Property Name="Student_Result_ID" Type="Int32" Nullable="false" />
+    <Property Name="Student_Result1" Type="Int32" />
+    <Property Name="Student_ID" Type="Int32" />
+    <Property Name="Exam_ID" Type="Int32" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_Student_Result_Exams" FromRole="Student_Result" ToRole="Exams" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Result_Students" FromRole="Student_Result" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Student_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Track_ID" Type="Int32" />
+    <Property Name="Intake_ID" Type="Int32" />
+    <Property Name="Login_ID" Type="Int32" />
+    <NavigationProperty Name="Intake" Relationship="Self.FK_Students_Intake" FromRole="Students" ToRole="Intake" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_Students_Login" FromRole="Students" ToRole="Login" />
+    <NavigationProperty Name="Student_Answer" Relationship="Self.FK_Student_Answer_Students" FromRole="Students" ToRole="Student_Answer" />
+    <NavigationProperty Name="Student_Result" Relationship="Self.FK_Student_Result_Students" FromRole="Students" ToRole="Student_Result" />
+    <NavigationProperty Name="Track" Relationship="Self.FK_Students_Tracks" FromRole="Students" ToRole="Tracks" />
+  </EntityType>
+  <EntityType Name="TextQuestion">
+    <Key>
+      <PropertyRef Name="Text_Q_ID" />
+    </Key>
+    <Property Name="Text_Q_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text_Correct_Ans" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Poll_ID" Type="Int32" />
+    <NavigationProperty Name="QuestionPool" Relationship="Self.FK_TextQuestion_QuestionPool" FromRole="TextQuestion" ToRole="QuestionPool" />
+  </EntityType>
+  <EntityType Name="Track">
+    <Key>
+      <PropertyRef Name="Track_ID" />
+    </Key>
+    <Property Name="Track_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Track_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Department_ID" Type="Int32" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Tracks" FromRole="Tracks" ToRole="Courses" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Tracks_Departments" FromRole="Tracks" ToRole="Departments" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Tracks" FromRole="Tracks" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="TrainingManager">
+    <Key>
+      <PropertyRef Name="Training_Mang_ID" />
+    </Key>
+    <Property Name="Training_Mang_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Training_Mang_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="Login_ID" Type="Int32" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_TrainingManager_Branches" FromRole="TrainingManager" ToRole="Branches" />
+    <NavigationProperty Name="Instructors" Relationship="Self.FK_Instructors_TrainingManager" FromRole="TrainingManager" ToRole="Instructors" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_TrainingManager_Login" FromRole="TrainingManager" ToRole="Login" />
+  </EntityType>
+  <EntityType Name="TureFalseQuestion">
+    <Key>
+      <PropertyRef Name="TF_Q_ID" />
+    </Key>
+    <Property Name="TF_Q_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TF_Correct_Ans" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Question_Poll_ID" Type="Int32" />
+    <NavigationProperty Name="QuestionPool" Relationship="Self.FK_TureFalseQuestion_QuestionPool" FromRole="TureFalseQuestion" ToRole="QuestionPool" />
+  </EntityType>
+  <EntityType Name="MSreplication_options">
+    <Key>
+      <PropertyRef Name="optname" />
+      <PropertyRef Name="value" />
+      <PropertyRef Name="major_version" />
+      <PropertyRef Name="minor_version" />
+      <PropertyRef Name="revision" />
+      <PropertyRef Name="install_failures" />
+    </Key>
+    <Property Name="optname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="value" Type="Boolean" Nullable="false" />
+    <Property Name="major_version" Type="Int32" Nullable="false" />
+    <Property Name="minor_version" Type="Int32" Nullable="false" />
+    <Property Name="revision" Type="Int32" Nullable="false" />
+    <Property Name="install_failures" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_db">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="version" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_dbid" Type="Int16" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dbid" Type="Int16" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="version" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_dev">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="low" />
+      <PropertyRef Name="high" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="phyname" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_low" Type="Int32" />
+    <Property Name="xfallback_drive" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="low" Type="Int32" Nullable="false" />
+    <Property Name="high" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phyname" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_usg">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="segmap" />
+      <PropertyRef Name="lstart" />
+      <PropertyRef Name="sizepg" />
+      <PropertyRef Name="vstart" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_vstart" Type="Int32" />
+    <Property Name="dbid" Type="Int16" Nullable="false" />
+    <Property Name="segmap" Type="Int32" Nullable="false" />
+    <Property Name="lstart" Type="Int32" Nullable="false" />
+    <Property Name="sizepg" Type="Int32" Nullable="false" />
+    <Property Name="vstart" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_monitor">
+    <Key>
+      <PropertyRef Name="lastrun" />
+      <PropertyRef Name="cpu_busy" />
+      <PropertyRef Name="io_busy" />
+      <PropertyRef Name="idle" />
+      <PropertyRef Name="pack_received" />
+      <PropertyRef Name="pack_sent" />
+      <PropertyRef Name="connections" />
+      <PropertyRef Name="pack_errors" />
+      <PropertyRef Name="total_read" />
+      <PropertyRef Name="total_write" />
+      <PropertyRef Name="total_errors" />
+    </Key>
+    <Property Name="lastrun" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cpu_busy" Type="Int32" Nullable="false" />
+    <Property Name="io_busy" Type="Int32" Nullable="false" />
+    <Property Name="idle" Type="Int32" Nullable="false" />
+    <Property Name="pack_received" Type="Int32" Nullable="false" />
+    <Property Name="pack_sent" Type="Int32" Nullable="false" />
+    <Property Name="connections" Type="Int32" Nullable="false" />
+    <Property Name="pack_errors" Type="Int32" Nullable="false" />
+    <Property Name="total_read" Type="Int32" Nullable="false" />
+    <Property Name="total_write" Type="Int32" Nullable="false" />
+    <Property Name="total_errors" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Branches_Departments">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Branches" Type="Self.Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Department_ID" />
+      </Principal>
+      <Dependent Role="Branches">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingManager_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="TrainingManager" Type="Self.TrainingManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="Branch_ID" />
+      </Principal>
+      <Dependent Role="TrainingManager">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Instructors">
+    <End Role="Instructors" Type="Self.Instructor" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructors">
+        <PropertyRef Name="Instructor_ID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Instructor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Tracks">
+    <End Role="Tracks" Type="Self.Track" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tracks">
+        <PropertyRef Name="Track_ID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Track_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionPool_Courses">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="QuestionPool">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tracks_Departments">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Tracks" Type="Self.Track" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Department_ID" />
+      </Principal>
+      <Dependent Role="Tracks">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExamAllowOptions_Exams">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="0..1" />
+    <End Role="ExamAllowOptions" Type="Self.ExamAllowOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="ExamAllowOptions">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_Exams">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="0..1" />
+    <End Role="Instructor_Exam_Degree" Type="Self.Instructor_Exam_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Instructor_Exam_Degree">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_Exams1">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="0..1" />
+    <End Role="Question_Pool_Exam" Type="Self.Question_Pool_Exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Question_Pool_Exam">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Question_Degree_Exams">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="0..1" />
+    <End Role="Student_Question_Degree" Type="Self.Student_Question_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Student_Question_Degree">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Result_Exams">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Exam_ID" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="Exam_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="Instructor_Exam_Degree" Type="Self.Instructor_Exam_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Instructor_Exam_Degree">
+        <PropertyRef Name="Question_Pool_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructors_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="Instructors" Type="Self.Instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Login_ID" />
+      </Principal>
+      <Dependent Role="Instructors">
+        <PropertyRef Name="Login_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructors_TrainingManager">
+    <End Role="TrainingManager" Type="Self.TrainingManager" Multiplicity="0..1" />
+    <End Role="Instructors" Type="Self.Instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingManager">
+        <PropertyRef Name="Training_Mang_ID" />
+      </Principal>
+      <Dependent Role="Instructors">
+        <PropertyRef Name="Manager_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Intake">
+    <End Role="Intake" Type="Self.Intake" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intake">
+        <PropertyRef Name="Intake_ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Intake_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Login_ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Login_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingManager_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="TrainingManager" Type="Self.TrainingManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Login_ID" />
+      </Principal>
+      <Dependent Role="TrainingManager">
+        <PropertyRef Name="Login_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MCQ_Multi_Ans_MCQ_Multi_Ans">
+    <End Role="MCQ_Multi_Ans" Type="Self.MCQ_Multi_Ans" Multiplicity="1" />
+    <End Role="MCQ_Multi_Ans1" Type="Self.MCQ_Multi_Ans" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MCQ_Multi_Ans">
+        <PropertyRef Name="MCQ_Multi_Ans_ID" />
+      </Principal>
+      <Dependent Role="MCQ_Multi_Ans1">
+        <PropertyRef Name="MCQ_Multi_Ans_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MCQ_Multi_Ans_MCQuestion">
+    <End Role="MCQuestion" Type="Self.MCQuestion" Multiplicity="0..1" />
+    <End Role="MCQ_Multi_Ans" Type="Self.MCQ_Multi_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MCQuestion">
+        <PropertyRef Name="MCQ_Q_ID" />
+      </Principal>
+      <Dependent Role="MCQ_Multi_Ans">
+        <PropertyRef Name="MCQ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MCQuestion_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="MCQuestion" Type="Self.MCQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="MCQuestion">
+        <PropertyRef Name="Question_Poll_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Pool_Exam_QuestionPool1">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="Question_Pool_Exam" Type="Self.Question_Pool_Exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Question_Pool_Exam">
+        <PropertyRef Name="Question_Pool_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Degree_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="Student_Question_Degree" Type="Self.Student_Question_Degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Student_Question_Degree">
+        <PropertyRef Name="Question_Pool_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TextQuestion_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="TextQuestion" Type="Self.TextQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="TextQuestion">
+        <PropertyRef Name="Question_Poll_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TureFalseQuestion_QuestionPool">
+    <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+    <End Role="TureFalseQuestion" Type="Self.TureFalseQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionPool">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="TureFalseQuestion">
+        <PropertyRef Name="Question_Poll_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Answer_Student_Question_Degree">
+    <End Role="Student_Question_Degree" Type="Self.Student_Question_Degree" Multiplicity="0..1" />
+    <End Role="Student_Answer" Type="Self.Student_Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student_Question_Degree">
+        <PropertyRef Name="Student_Q_Degree_ID" />
+      </Principal>
+      <Dependent Role="Student_Answer">
+        <PropertyRef Name="Student_Question_Degree_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Answer_Students">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Student_Answer" Type="Self.Student_Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="Student_Answer">
+        <PropertyRef Name="Students_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Result_Students">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="Student_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Tracks">
+    <End Role="Tracks" Type="Self.Track" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tracks">
+        <PropertyRef Name="Track_ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Track_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Courses" EntityType="Self.Cours" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="ExamAllowOptions" EntityType="Self.ExamAllowOption" />
+    <EntitySet Name="Exams" EntityType="Self.Exam" />
+    <EntitySet Name="Instructor_Exam_Degree" EntityType="Self.Instructor_Exam_Degree" />
+    <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+    <EntitySet Name="Intakes" EntityType="Self.Intake" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="MCQ_Multi_Ans" EntityType="Self.MCQ_Multi_Ans" />
+    <EntitySet Name="MCQuestions" EntityType="Self.MCQuestion" />
+    <EntitySet Name="Question_Pool_Exam" EntityType="Self.Question_Pool_Exam" />
+    <EntitySet Name="QuestionPools" EntityType="Self.QuestionPool" />
+    <EntitySet Name="Student_Answer" EntityType="Self.Student_Answer" />
+    <EntitySet Name="Student_Question_Degree" EntityType="Self.Student_Question_Degree" />
+    <EntitySet Name="Student_Result" EntityType="Self.Student_Result" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="TextQuestions" EntityType="Self.TextQuestion" />
+    <EntitySet Name="Tracks" EntityType="Self.Track" />
+    <EntitySet Name="TrainingManagers" EntityType="Self.TrainingManager" />
+    <EntitySet Name="TureFalseQuestions" EntityType="Self.TureFalseQuestion" />
+    <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" />
+    <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" />
+    <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" />
+    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" />
+    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" />
+    <AssociationSet Name="FK_Branches_Departments" Association="Self.FK_Branches_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Branches" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingManager_Branches" Association="Self.FK_TrainingManager_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="TrainingManager" EntitySet="TrainingManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Instructors" Association="Self.FK_Courses_Instructors">
+      <End Role="Instructors" EntitySet="Instructors" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Tracks" Association="Self.FK_Courses_Tracks">
+      <End Role="Tracks" EntitySet="Tracks" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionPool_Courses" Association="Self.FK_QuestionPool_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tracks_Departments" Association="Self.FK_Tracks_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Tracks" EntitySet="Tracks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExamAllowOptions_Exams" Association="Self.FK_ExamAllowOptions_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="ExamAllowOptions" EntitySet="ExamAllowOptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_Exams" Association="Self.FK_Question_Pool_Exam_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Instructor_Exam_Degree" EntitySet="Instructor_Exam_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_Exams1" Association="Self.FK_Question_Pool_Exam_Exams1">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Question_Pool_Exam" EntitySet="Question_Pool_Exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Question_Degree_Exams" Association="Self.FK_Student_Question_Degree_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Student_Question_Degree" EntitySet="Student_Question_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Result_Exams" Association="Self.FK_Student_Result_Exams">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_QuestionPool" Association="Self.FK_Question_Pool_Exam_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+      <End Role="Instructor_Exam_Degree" EntitySet="Instructor_Exam_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructors_Login" Association="Self.FK_Instructors_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Instructors" EntitySet="Instructors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructors_TrainingManager" Association="Self.FK_Instructors_TrainingManager">
+      <End Role="TrainingManager" EntitySet="TrainingManagers" />
+      <End Role="Instructors" EntitySet="Instructors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Intake" Association="Self.FK_Students_Intake">
+      <End Role="Intake" EntitySet="Intakes" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Login" Association="Self.FK_Students_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingManager_Login" Association="Self.FK_TrainingManager_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="TrainingManager" EntitySet="TrainingManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MCQ_Multi_Ans_MCQ_Multi_Ans" Association="Self.FK_MCQ_Multi_Ans_MCQ_Multi_Ans">
+      <End Role="MCQ_Multi_Ans" EntitySet="MCQ_Multi_Ans" />
+      <End Role="MCQ_Multi_Ans1" EntitySet="MCQ_Multi_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MCQ_Multi_Ans_MCQuestion" Association="Self.FK_MCQ_Multi_Ans_MCQuestion">
+      <End Role="MCQuestion" EntitySet="MCQuestions" />
+      <End Role="MCQ_Multi_Ans" EntitySet="MCQ_Multi_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MCQuestion_QuestionPool" Association="Self.FK_MCQuestion_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+      <End Role="MCQuestion" EntitySet="MCQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Pool_Exam_QuestionPool1" Association="Self.FK_Question_Pool_Exam_QuestionPool1">
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+      <End Role="Question_Pool_Exam" EntitySet="Question_Pool_Exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Degree_QuestionPool" Association="Self.FK_Question_Degree_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+      <End Role="Student_Question_Degree" EntitySet="Student_Question_Degree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TextQuestion_QuestionPool" Association="Self.FK_TextQuestion_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+      <End Role="TextQuestion" EntitySet="TextQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TureFalseQuestion_QuestionPool" Association="Self.FK_TureFalseQuestion_QuestionPool">
+      <End Role="QuestionPool" EntitySet="QuestionPools" />
+      <End Role="TureFalseQuestion" EntitySet="TureFalseQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Answer_Student_Question_Degree" Association="Self.FK_Student_Answer_Student_Question_Degree">
+      <End Role="Student_Question_Degree" EntitySet="Student_Question_Degree" />
+      <End Role="Student_Answer" EntitySet="Student_Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Answer_Students" Association="Self.FK_Student_Answer_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Student_Answer" EntitySet="Student_Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Result_Students" Association="Self.FK_Student_Result_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Tracks" Association="Self.FK_Students_Tracks">
+      <End Role="Tracks" EntitySet="Tracks" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

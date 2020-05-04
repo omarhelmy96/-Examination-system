@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="masterModel.Branch">
+        <MappingFragment StoreEntitySet="Branches">
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="masterModel.Cours">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Course_Name" ColumnName="Course_Name" />
+          <ScalarProperty Name="Course_Desc" ColumnName="Course_Desc" />
+          <ScalarProperty Name="Course_Max_Degree" ColumnName="Course_Max_Degree" />
+          <ScalarProperty Name="Course_Min_Degree" ColumnName="Course_Min_Degree" />
+          <ScalarProperty Name="Instructor_ID" ColumnName="Instructor_ID" />
+          <ScalarProperty Name="Track_ID" ColumnName="Track_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="masterModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+          <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamAllowOptions">
+      <EntityTypeMapping TypeName="masterModel.ExamAllowOption">
+        <MappingFragment StoreEntitySet="ExamAllowOptions">
+          <ScalarProperty Name="Exam_Option_ID" ColumnName="Exam_Option_ID" />
+          <ScalarProperty Name="Exam_Allows_Option" ColumnName="Exam_Allows_Option" />
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exams">
+      <EntityTypeMapping TypeName="masterModel.Exam">
+        <MappingFragment StoreEntitySet="Exams">
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+          <ScalarProperty Name="Exam_Type" ColumnName="Exam_Type" />
+          <ScalarProperty Name="Exam_Total_Degree" ColumnName="Exam_Total_Degree" />
+          <ScalarProperty Name="Exam_Start_Time" ColumnName="Exam_Start_Time" />
+          <ScalarProperty Name="Exam_END_Time" ColumnName="Exam_END_Time" />
+          <ScalarProperty Name="Exam_Total_Time" ColumnName="Exam_Total_Time" />
+          <ScalarProperty Name="Exam_Date" ColumnName="Exam_Date" />
+          <ScalarProperty Name="Instructor_ID" ColumnName="Instructor_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instructor_Exam_Degree">
+      <EntityTypeMapping TypeName="masterModel.Instructor_Exam_Degree">
+        <MappingFragment StoreEntitySet="Instructor_Exam_Degree">
+          <ScalarProperty Name="Question_Pool_Exam_ID" ColumnName="Question_Pool_Exam_ID" />
+          <ScalarProperty Name="Instructor_Degree" ColumnName="Instructor_Degree" />
+          <ScalarProperty Name="Question_Pool_ID" ColumnName="Question_Pool_ID" />
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instructors">
+      <EntityTypeMapping TypeName="masterModel.Instructor">
+        <MappingFragment StoreEntitySet="Instructors">
+          <ScalarProperty Name="Instructor_ID" ColumnName="Instructor_ID" />
+          <ScalarProperty Name="Instructor_Name" ColumnName="Instructor_Name" />
+          <ScalarProperty Name="Manager_ID" ColumnName="Manager_ID" />
+          <ScalarProperty Name="Login_ID" ColumnName="Login_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intakes">
+      <EntityTypeMapping TypeName="masterModel.Intake">
+        <MappingFragment StoreEntitySet="Intake">
+          <ScalarProperty Name="Intake_ID" ColumnName="Intake_ID" />
+          <ScalarProperty Name="Intake_No" ColumnName="Intake_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="masterModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="Login_ID" ColumnName="Login_ID" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Acc_Type" ColumnName="Acc_Type" />
+          <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MCQ_Multi_Ans">
+      <EntityTypeMapping TypeName="masterModel.MCQ_Multi_Ans">
+        <MappingFragment StoreEntitySet="MCQ_Multi_Ans">
+          <ScalarProperty Name="MCQ_Multi_Ans_ID" ColumnName="MCQ_Multi_Ans_ID" />
+          <ScalarProperty Name="MCQ_Multi_Answar" ColumnName="MCQ_Multi_Answar" />
+          <ScalarProperty Name="MCQ_ID" ColumnName="MCQ_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MCQuestions">
+      <EntityTypeMapping TypeName="masterModel.MCQuestion">
+        <MappingFragment StoreEntitySet="MCQuestion">
+          <ScalarProperty Name="MCQ_Q_ID" ColumnName="MCQ_Q_ID" />
+          <ScalarProperty Name="MCQ_Correct_Ans" ColumnName="MCQ_Correct_Ans" />
+          <ScalarProperty Name="Question_Poll_ID" ColumnName="Question_Poll_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question_Pool_Exam">
+      <EntityTypeMapping TypeName="masterModel.Question_Pool_Exam">
+        <MappingFragment StoreEntitySet="Question_Pool_Exam">
+          <ScalarProperty Name="Question_Pool_Exam_ID" ColumnName="Question_Pool_Exam_ID" />
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+          <ScalarProperty Name="Question_Pool_ID" ColumnName="Question_Pool_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionPools">
+      <EntityTypeMapping TypeName="masterModel.QuestionPool">
+        <MappingFragment StoreEntitySet="QuestionPool">
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Default_Degree" ColumnName="Default_Degree" />
+          <ScalarProperty Name="Q_Type" ColumnName="Q_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Answer">
+      <EntityTypeMapping TypeName="masterModel.Student_Answer">
+        <MappingFragment StoreEntitySet="Student_Answer">
+          <ScalarProperty Name="Student_Ans_ID" ColumnName="Student_Ans_ID" />
+          <ScalarProperty Name="Students_ID" ColumnName="Students_ID" />
+          <ScalarProperty Name="Student_Answer1" ColumnName="Student_Answer" />
+          <ScalarProperty Name="Student_Question_Degree_ID" ColumnName="Student_Question_Degree_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Question_Degree">
+      <EntityTypeMapping TypeName="masterModel.Student_Question_Degree">
+        <MappingFragment StoreEntitySet="Student_Question_Degree">
+          <ScalarProperty Name="Student_Q_Degree_ID" ColumnName="Student_Q_Degree_ID" />
+          <ScalarProperty Name="Student_Question_Degree1" ColumnName="Student_Question_Degree" />
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+          <ScalarProperty Name="Question_Pool_ID" ColumnName="Question_Pool_ID" />
+          <ScalarProperty Name="Student_Ans_ID" ColumnName="Student_Ans_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Result">
+      <EntityTypeMapping TypeName="masterModel.Student_Result">
+        <MappingFragment StoreEntitySet="Student_Result">
+          <ScalarProperty Name="Student_Result_ID" ColumnName="Student_Result_ID" />
+          <ScalarProperty Name="Student_Result1" ColumnName="Student_Result" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="masterModel.Student">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+          <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+          <ScalarProperty Name="Track_ID" ColumnName="Track_ID" />
+          <ScalarProperty Name="Intake_ID" ColumnName="Intake_ID" />
+          <ScalarProperty Name="Login_ID" ColumnName="Login_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TextQuestions">
+      <EntityTypeMapping TypeName="masterModel.TextQuestion">
+        <MappingFragment StoreEntitySet="TextQuestion">
+          <ScalarProperty Name="Text_Q_ID" ColumnName="Text_Q_ID" />
+          <ScalarProperty Name="Text_Correct_Ans" ColumnName="Text_Correct_Ans" />
+          <ScalarProperty Name="Question_Poll_ID" ColumnName="Question_Poll_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tracks">
+      <EntityTypeMapping TypeName="masterModel.Track">
+        <MappingFragment StoreEntitySet="Tracks">
+          <ScalarProperty Name="Track_ID" ColumnName="Track_ID" />
+          <ScalarProperty Name="Track_Name" ColumnName="Track_Name" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingManagers">
+      <EntityTypeMapping TypeName="masterModel.TrainingManager">
+        <MappingFragment StoreEntitySet="TrainingManager">
+          <ScalarProperty Name="Training_Mang_ID" ColumnName="Training_Mang_ID" />
+          <ScalarProperty Name="Training_Mang_Name" ColumnName="Training_Mang_Name" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Login_ID" ColumnName="Login_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TureFalseQuestions">
+      <EntityTypeMapping TypeName="masterModel.TureFalseQuestion">
+        <MappingFragment StoreEntitySet="TureFalseQuestion">
+          <ScalarProperty Name="TF_Q_ID" ColumnName="TF_Q_ID" />
+          <ScalarProperty Name="TF_Correct_Ans" ColumnName="TF_Correct_Ans" />
+          <ScalarProperty Name="Question_Poll_ID" ColumnName="Question_Poll_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSreplication_options">
+      <EntityTypeMapping TypeName="masterModel.MSreplication_options">
+        <MappingFragment StoreEntitySet="MSreplication_options">
+          <ScalarProperty Name="optname" ColumnName="optname" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="major_version" ColumnName="major_version" />
+          <ScalarProperty Name="minor_version" ColumnName="minor_version" />
+          <ScalarProperty Name="revision" ColumnName="revision" />
+          <ScalarProperty Name="install_failures" ColumnName="install_failures" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spt_fallback_db">
+      <EntityTypeMapping TypeName="masterModel.spt_fallback_db">
+        <MappingFragment StoreEntitySet="spt_fallback_db">
+          <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
+          <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
+          <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
+          <ScalarProperty Name="xfallback_dbid" ColumnName="xfallback_dbid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="dbid" ColumnName="dbid" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="version" ColumnName="version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spt_fallback_dev">
+      <EntityTypeMapping TypeName="masterModel.spt_fallback_dev">
+        <MappingFragment StoreEntitySet="spt_fallback_dev">
+          <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
+          <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
+          <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
+          <ScalarProperty Name="xfallback_low" ColumnName="xfallback_low" />
+          <ScalarProperty Name="xfallback_drive" ColumnName="xfallback_drive" />
+          <ScalarProperty Name="low" ColumnName="low" />
+          <ScalarProperty Name="high" ColumnName="high" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phyname" ColumnName="phyname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spt_fallback_usg">
+      <EntityTypeMapping TypeName="masterModel.spt_fallback_usg">
+        <MappingFragment StoreEntitySet="spt_fallback_usg">
+          <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
+          <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
+          <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
+          <ScalarProperty Name="xfallback_vstart" ColumnName="xfallback_vstart" />
+          <ScalarProperty Name="dbid" ColumnName="dbid" />
+          <ScalarProperty Name="segmap" ColumnName="segmap" />
+          <ScalarProperty Name="lstart" ColumnName="lstart" />
+          <ScalarProperty Name="sizepg" ColumnName="sizepg" />
+          <ScalarProperty Name="vstart" ColumnName="vstart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spt_monitor">
+      <EntityTypeMapping TypeName="masterModel.spt_monitor">
+        <MappingFragment StoreEntitySet="spt_monitor">
+          <ScalarProperty Name="lastrun" ColumnName="lastrun" />
+          <ScalarProperty Name="cpu_busy" ColumnName="cpu_busy" />
+          <ScalarProperty Name="io_busy" ColumnName="io_busy" />
+          <ScalarProperty Name="idle" ColumnName="idle" />
+          <ScalarProperty Name="pack_received" ColumnName="pack_received" />
+          <ScalarProperty Name="pack_sent" ColumnName="pack_sent" />
+          <ScalarProperty Name="connections" ColumnName="connections" />
+          <ScalarProperty Name="pack_errors" ColumnName="pack_errors" />
+          <ScalarProperty Name="total_read" ColumnName="total_read" />
+          <ScalarProperty Name="total_write" ColumnName="total_write" />
+          <ScalarProperty Name="total_errors" ColumnName="total_errors" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
